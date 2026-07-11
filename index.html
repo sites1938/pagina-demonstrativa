@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lash Design Premium | O Olhar que Você Sempre Sonhou</title>
+    <meta name="description" content="Extensão de cílios premium com técnicas internacionais. Resultado natural, duradouro e sem danificar seus fios. Agende sua avaliação gratuita.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9d4edd', /* Roxo vibrante e premium */
+                        primaryHover: '#7b2cbf', /* Roxo mais escuro para hover */
+                        primaryLight: '#e0aaff', /* Lilás suave para textos e ícones */
+                        dark: '#0f0a14', /* Fundo escuro base */
+                        darker: '#0a060d' /* Fundo ainda mais escuro para seções alternadas */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            background-color: #0f0a14;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* 
+         * Media Background Styles 
+         */
+        .media-background {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0f0a14; 
+        }
+
+        .media-background > img, 
+        .media-background > video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .media-background > video {
+            opacity: 0;
+        }
+        
+        .overlay {
+            background: linear-gradient(to bottom, rgba(15,10,20,0.3) 0%, rgba(15,10,20,0.95) 100%);
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+        }
+        
+        .glass-panel {
+            background: rgba(30, 20, 40, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(224, 170, 255, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0a14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3c2a4d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9d4edd;
+        }
+
+        /* Float WhatsApp Animation */
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-float {
+            animation: pulse-soft 2s infinite;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary selection:text-white relative">
+
+    <!-- Navbar / Header (Sticky) -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-darker/80 backdrop-blur-md border-b border-primaryLight/10 py-4" id="navbar">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif font-semibold text-white tracking-wide">
+                Lash<span class="text-primaryLight italic font-light">Premium</span>
+            </a>
+            
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#sobre" class="text-sm font-light hover:text-primaryLight transition">A Especialista</a>
+                <a href="#tecnicas" class="text-sm font-light hover:text-primaryLight transition">Técnicas</a>
+                <a href="#vantagens" class="text-sm font-light hover:text-primaryLight transition">Por que nós?</a>
+                <a href="#depoimentos" class="text-sm font-light hover:text-primaryLight transition">Depoimentos</a>
+                <a href="#faq" class="text-sm font-light hover:text-primaryLight transition">FAQ</a>
+                <a href="#agendar" class="bg-primary hover:bg-primaryHover text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-lg shadow-primary/20">Agendar</a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none relative w-6 h-6 flex items-center justify-center">
+                <i data-lucide="menu" id="icon-menu" class="absolute transition-opacity duration-300 w-6 h-6"></i>
+                <i data-lucide="x" id="icon-close" class="absolute opacity-0 transition-opacity duration-300 w-6 h-6"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobile-menu" class="fixed inset-0 bg-darker/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-opacity duration-300">
+        <a href="#sobre" class="mobile-link text-2xl font-light hover:text-primaryLight transition text-white">A Especialista</a>
+        <a href="#tecnicas" class="mobile-link text-2xl font-light hover:text-primaryLight transition text-white">Técnicas</a>
+        <a href="#vantagens" class="mobile-link text-2xl font-light hover:text-primaryLight transition text-white">Por que nós?</a>
+        <a href="#depoimentos" class="mobile-link text-2xl font-light hover:text-primaryLight transition text-white">Depoimentos</a>
+        <a href="#faq" class="mobile-link text-2xl font-light hover:text-primaryLight transition text-white">FAQ</a>
+        <a href="#agendar" class="mobile-link bg-primary hover:bg-primaryHover text-white px-8 py-3 rounded-full text-xl font-medium transition shadow-lg shadow-primary/20 mt-4">Agendar</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-[100svh] min-h-[600px] md:min-h-[700px] flex items-center justify-center overflow-hidden" id="home">
+        <!-- Background Media Container -->
+        <div class="media-background" id="hero-media">
+            <!-- Imagem Estática Inicial -->
+            <img src="https://images.unsplash.com/photo-1588820464245-c47bb66408db?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Lash Design Estático" id="static-poster">
+            <!-- O vídeo será injetado aqui via JavaScript -->
+        </div>
+        
+        <!-- Dark Gradient Overlay -->
+        <div class="overlay"></div>
+
+        <!-- Content -->
+        <div class="relative z-20 container mx-auto px-6 text-center flex flex-col items-center justify-center pt-20 opacity-0 transition-all duration-1000" id="hero-content">
+            <div class="inline-flex items-center space-x-2 border border-primary/40 bg-primary/10 px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
+                <i data-lucide="sparkles" class="text-primaryLight w-4 h-4"></i>
+                <span class="text-primaryLight text-xs md:text-sm tracking-widest uppercase font-medium">Referência em Extensão de Cílios</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-semibold mb-6 max-w-5xl mx-auto leading-tight text-white drop-shadow-2xl">
+                Acorde pronta, <br class="hidden sm:block"> <span class="text-primaryLight italic font-light">todos os dias</span>
+            </h1>
+            
+            <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed px-2">
+                Cílios que parecem naturalmente seus — só que mais longos, volumosos e perfeitos. Sem rímel, sem curvex, sem esforço. Resultado que dura até 30 dias.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 items-center justify-center w-full sm:w-auto px-4">
+                <a href="#agendar" class="w-full sm:w-auto justify-center bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-primaryHover transition duration-300 transform hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(157,78,221,0.5)]">
+                    Quero Minha Avaliação Gratuita
+                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                </a>
+                <a href="#tecnicas" class="w-full sm:w-auto justify-center px-8 py-4 rounded-full font-medium text-white border border-primaryLight/30 hover:bg-white/10 transition duration-300 backdrop-blur-sm flex items-center gap-2">
+                    Ver Antes e Depois
+                    <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre a Especialista -->
+    <section id="sobre" class="py-24 bg-dark relative z-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <!-- Imagem -->
+                <div class="w-full lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-primary/20 rounded-2xl blur-xl"></div>
+                        <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="A Especialista" class="relative rounded-2xl shadow-2xl object-cover h-[600px] w-full border border-primaryLight/20">
+                        <div class="absolute -bottom-6 -right-6 bg-darker p-6 rounded-xl border border-primaryLight/20 shadow-xl hidden md:block">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-primary/20 p-3 rounded-full text-primaryLight">
+                                    <i data-lucide="award" class="w-8 h-8"></i>
+                                </div>
+                                <div>
+                                    <p class="text-3xl font-serif text-white">5+</p>
+                                    <p class="text-sm font-light text-gray-400">Anos de Experiência</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Textos -->
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-sm tracking-widest uppercase text-primaryLight font-medium mb-3">Quem Cuida do Seu Olhar</h2>
+                    <h3 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">Seu olhar está em boas mãos.</h3>
+                    
+                    <p class="text-gray-300 font-light mb-6 leading-relaxed">
+                        Com mais de 5 anos dedicados exclusivamente à extensão de cílios e certificações internacionais, já transformei o olhar de centenas de mulheres. Cada aplicação é pensada para valorizar o formato dos seus olhos — porque beleza de verdade é aquela que parece natural.
+                    </p>
+                    
+                    <p class="text-gray-300 font-light mb-8 leading-relaxed">
+                        Aqui você não faz "só um procedimento". Você deita em uma maca massageadora, relaxa com aromaterapia, e acorda com o olhar dos sonhos. Tudo com materiais hipoalergênicos de altíssimo padrão que protegem 100% dos seus fios naturais.
+                    </p>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-primaryLight"></i>
+                            <span class="font-light">Certificações Internacionais Master Lash</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-primaryLight"></i>
+                            <span class="font-light">Especialista em Visagismo e Mapping</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-primaryLight"></i>
+                            <span class="font-light">Biossegurança e Saúde Ocular em Primeiro Lugar</span>
+                        </li>
+                    </ul>
+                    
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Signature_placeholder.svg" alt="Assinatura" class="h-12 opacity-50 invert" style="filter: brightness(0) invert(1) sepia(1) hue-rotate(220deg) saturate(3) brightness(1.5);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Técnicas (Menu de Serviços) -->
+    <section id="tecnicas" class="py-24 bg-darker relative z-20 border-t border-primaryLight/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-sm tracking-widest uppercase text-primaryLight font-medium mb-3">Escolha o Seu Estilo</h2>
+                <h3 class="text-4xl md:text-5xl font-serif mb-6">Qual olhar combina com você?</h3>
+                <p class="text-gray-400 font-light max-w-2xl mx-auto">Cada técnica entrega um efeito diferente. Na sua avaliação gratuita, vamos descobrir juntas qual é o modelo perfeito para o seu rosto e estilo de vida.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="glass-panel p-1 rounded-2xl group hover:-translate-y-2 transition duration-300 hover:border-primary/50 relative overflow-hidden">
+                    <div class="w-full h-48 bg-primary/10 flex items-center justify-center rounded-xl mb-6 text-gray-500 font-light text-sm italic border border-dashed border-primaryLight/20 group-hover:border-primaryLight/50 transition">suas imagens aqui</div>
+                    <div class="px-8 pb-8">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-2xl font-serif">Fio a Fio Clássico</h4>
+                        </div>
+                        <p class="text-gray-400 font-light text-sm mb-6">Um fio aplicado sobre cada fio natural. O resultado? Aquele efeito de "nasceu com cílios perfeitos". Ideal para quem quer elegância sem exagero.</p>
+                        <a href="#agendar" class="text-primaryLight font-medium text-sm flex items-center gap-2 group-hover:text-primary transition">
+                            Quero esse olhar <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Serviço 2 -->
+                <div class="glass-panel p-1 rounded-2xl group hover:-translate-y-2 transition duration-300 hover:border-primary/50 relative overflow-hidden border-primary/30 shadow-[0_0_15px_rgba(157,78,221,0.15)]">
+                    <div class="absolute top-4 right-4 bg-primary text-white text-xs px-3 py-1 rounded-full z-10 font-medium tracking-wide">⭐ FAVORITO DAS CLIENTES</div>
+                    <div class="w-full h-48 bg-primary/10 flex items-center justify-center rounded-xl mb-6 text-gray-500 font-light text-sm italic border border-dashed border-primaryLight/20 group-hover:border-primaryLight/50 transition">suas imagens aqui</div>
+                    <div class="px-8 pb-8">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-2xl font-serif">Volume Brasileiro</h4>
+                        </div>
+                        <p class="text-gray-400 font-light text-sm mb-6">Fios em formato Y que criam volume marcante com textura leve e moderna. O efeito "acabei de sair do salão" que dura semanas — sem parecer artificial.</p>
+                        <a href="#agendar" class="text-primaryLight font-medium text-sm flex items-center gap-2 group-hover:text-primary transition">
+                            Quero esse olhar <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Serviço 3 -->
+                <div class="glass-panel p-1 rounded-2xl group hover:-translate-y-2 transition duration-300 hover:border-primary/50 relative overflow-hidden">
+                    <div class="w-full h-48 bg-primary/10 flex items-center justify-center rounded-xl mb-6 text-gray-500 font-light text-sm italic border border-dashed border-primaryLight/20 group-hover:border-primaryLight/50 transition">suas imagens aqui</div>
+                    <div class="px-8 pb-8">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-2xl font-serif">Volume Russo</h4>
+                        </div>
+                        <p class="text-gray-400 font-light text-sm mb-6">Leques artesanais com fios ultrafinos que entregam volume máximo e olhar poderoso. Para quem quer impactar em qualquer ambiente — e mesmo assim sentir leveza total.</p>
+                        <a href="#agendar" class="text-primaryLight font-medium text-sm flex items-center gap-2 group-hover:text-primary transition">
+                            Quero esse olhar <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="#agendar" class="inline-block px-8 py-4 rounded-full font-medium text-white border border-primaryLight/30 hover:bg-primary/20 transition duration-300">
+                    Consultar Valores e Disponibilidade
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Vantagens (Já existia, aprimorada) -->
+    <section id="vantagens" class="py-24 relative bg-dark z-20 border-t border-primaryLight/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-serif mb-4">O que você ganha escolhendo a gente</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="glass-panel p-6 rounded-2xl text-center group hover:-translate-y-2 transition duration-300 hover:border-primaryLight/30">
+                    <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 text-primaryLight group-hover:scale-110 transition duration-300">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg mb-2 font-semibold">Zero Alergia</h3>
+                    <p class="text-gray-400 font-light text-xs">Fios de seda e adesivos importados, hipoalergênicos. Segurança total, mesmo para peles sensíveis.</p>
+                </div>
+                
+                <div class="glass-panel p-6 rounded-2xl text-center group hover:-translate-y-2 transition duration-300 hover:border-primaryLight/30">
+                    <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 text-primaryLight group-hover:scale-110 transition duration-300">
+                        <i data-lucide="eye" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg mb-2 font-semibold">Feito Pra Você</h3>
+                    <p class="text-gray-400 font-light text-xs">Mapeamento facial exclusivo para que o design realce exatamente o formato do seu olhar.</p>
+                </div>
+                
+                <div class="glass-panel p-6 rounded-2xl text-center group hover:-translate-y-2 transition duration-300 hover:border-primaryLight/30">
+                    <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 text-primaryLight group-hover:scale-110 transition duration-300">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg mb-2 font-semibold">Alta Retenção</h3>
+                    <p class="text-gray-400 font-light text-xs">Resultado que dura de verdade — até 30 dias sem retoque, sem surpresas.</p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl text-center group hover:-translate-y-2 transition duration-300 hover:border-primaryLight/30">
+                    <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 text-primaryLight group-hover:scale-110 transition duration-300">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg mb-2 font-semibold">Você Vai Dormir</h3>
+                    <p class="text-gray-400 font-light text-xs">Maca massageadora, aromaterapia e som ambiente. 90% das clientes dormem durante a aplicação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="py-24 bg-darker relative z-20 border-t border-primaryLight/5">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-serif text-center mb-16">Quem já fez, não larga mais</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Depoimento 1 -->
+                <div class="glass-panel p-8 rounded-2xl relative">
+                    <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-primary/20"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="Cliente" class="w-12 h-12 rounded-full border-2 border-primary/50 object-cover">
+                        <div>
+                            <h4 class="font-medium">Camila Mendes</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 font-light text-sm italic">"Já fiz em 4 lugares diferentes antes de chegar aqui. A diferença é absurda — o resultado é natural, não cai, não pesa. Não troco por nada."</p>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="glass-panel p-8 rounded-2xl relative">
+                    <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-primary/20"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=9" alt="Cliente" class="w-12 h-12 rounded-full border-2 border-primary/50 object-cover">
+                        <div>
+                            <h4 class="font-medium">Juliana Silva</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 font-light text-sm italic">"Chego lá estressada do trabalho e durmo a sessão inteira. Quando acordo, tá pronto — e dura 30 dias fácil. É meu momento de autocuidado favorito."</p>
+                </div>
+
+                <!-- Depoimento 3 -->
+                <div class="glass-panel p-8 rounded-2xl relative">
+                    <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-primary/20"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="Cliente" class="w-12 h-12 rounded-full border-2 border-primary/50 object-cover">
+                        <div>
+                            <h4 class="font-medium">Amanda Costa</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 font-light text-sm italic">"Tinha pavor de estragar meus cílios naturais. Faz 1 ano que faço manutenção toda quinzena e meus fios continuam fortes e saudáveis. Quem faz bem feito, não danifica."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-dark relative z-20 border-t border-primaryLight/5">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-5xl font-serif text-center mb-16">Tudo o que você precisa saber</h2>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <details class="group glass-panel rounded-xl cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium p-6 list-none">
+                        <span>Extensão de cílios dói ou incomoda?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-primaryLight"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 text-sm font-light px-6 pb-6 mt-[-10px]">
+                        Zero dor. O procedimento é tão relaxante que a maioria das clientes dorme durante a aplicação. Com isolamento perfeito e distância correta da pálpebra, você literalmente esquece que está usando extensão — parece que nasceu com eles.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details class="group glass-panel rounded-xl cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium p-6 list-none">
+                        <span>Vai danificar meus cílios naturais?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-primaryLight"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 text-sm font-light px-6 pb-6 mt-[-10px]">
+                        Não, quando feito por profissional qualificado. Usamos fios com peso calculado para cada fio natural e respeitamos o ciclo de crescimento. Temos clientes que fazem manutenção há mais de 1 ano com cílios 100% saudáveis. O dano só acontece com técnica ruim — e aqui isso não existe.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details class="group glass-panel rounded-xl cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium p-6 list-none">
+                        <span>Quanto tempo dura? Quando devo fazer manutenção?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-primaryLight"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 text-sm font-light px-6 pb-6 mt-[-10px]">
+                        Com os cuidados certos, o resultado dura até 40 dias. Recomendamos manutenção entre 15 e 21 dias para manter o volume sempre impecável. A queda natural faz parte do ciclo do seu organismo — a manutenção apenas repõe esses fios.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details class="group glass-panel rounded-xl cursor-pointer">
+                    <summary class="flex justify-between items-center font-medium p-6 list-none">
+                        <span>Quanto tempo demora o procedimento?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-primaryLight"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 text-sm font-light px-6 pb-6 mt-[-10px]">
+                        A primeira aplicação leva de 1h30 a 2h30 — tempo que a maioria das clientes aproveita para tirar um cochilo relaxante. As manutenções são mais rápidas: entre 1h e 1h30. Você sai pronta para arrasar.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato / Agendamento -->
+    <section id="agendar" class="py-24 bg-darker relative z-20 border-t border-primaryLight/5">
+        <div class="container mx-auto px-6">
+            <div class="glass-panel p-8 md:p-16 rounded-3xl relative overflow-hidden text-center border-primary/30 shadow-[0_0_30px_rgba(157,78,221,0.1)]">
+                <!-- Background blur effects -->
+                <div class="absolute -top-32 -left-32 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-32 -right-32 w-64 h-64 bg-primaryLight/10 rounded-full blur-3xl"></div>
+                
+                <h2 class="text-4xl md:text-5xl font-serif mb-6 relative z-10">Sua transformação começa com uma mensagem</h2>
+                <p class="text-gray-300 font-light mb-10 max-w-xl mx-auto relative z-10">
+                    A agenda é limitada e os horários mais procurados esgotam rápido. Garanta o seu agora — a avaliação é gratuita e sem compromisso.
+                </p>
+                
+                <a href="https://wa.me/5532999986684" target="_blank" class="inline-flex bg-[#25D366] text-white px-10 py-5 rounded-full font-medium hover:bg-[#1EBE59] transition duration-300 transform hover:scale-105 items-center gap-3 shadow-xl relative z-10">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    Garantir Meu Horário Agora
+                </a>
+
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 text-left md:text-center">
+                    <div>
+                        <i data-lucide="map-pin" class="w-8 h-8 text-primaryLight mx-0 md:mx-auto mb-4"></i>
+                        <h4 class="font-medium mb-1">Localização</h4>
+                        <p class="text-sm text-gray-400 font-light">Av. Paulista, 1000 - Bela Vista<br>São Paulo, SP</p>
+                    </div>
+                    <div>
+                        <i data-lucide="clock" class="w-8 h-8 text-primaryLight mx-0 md:mx-auto mb-4"></i>
+                        <h4 class="font-medium mb-1">Horário de Atendimento</h4>
+                        <p class="text-sm text-gray-400 font-light">Seg a Sex: 09h às 19h<br>Sábados: 09h às 14h</p>
+                    </div>
+                    <div>
+                        <i data-lucide="instagram" class="w-8 h-8 text-primaryLight mx-0 md:mx-auto mb-4"></i>
+                        <h4 class="font-medium mb-1">Redes Sociais</h4>
+                        <p class="text-sm text-gray-400 font-light">@LashDesignPremium<br>Acompanhe nosso trabalho</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-[#050208] py-8 border-t border-primaryLight/10 relative z-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-xl font-serif text-white">
+                Lash<span class="text-primaryLight italic font-light">Premium</span>
+            </div>
+            
+            <p class="text-xs text-gray-600">© 2026 Lash Design Premium. Todos os direitos reservados.</p>
+            
+            <div class="flex space-x-4 text-gray-400">
+                <a href="#" class="hover:text-primaryLight transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="hover:text-primaryLight transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="#" class="hover:text-primaryLight transition"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5532999986684" target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50 whatsapp-float hover:bg-[#1EBE59] transition-colors">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </a>
+
+    <!-- Offer Pop-up -->
+    <div id="offer-popup" class="fixed inset-0 z-[60] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-darker/80 backdrop-blur-sm" id="offer-backdrop"></div>
+        
+        <!-- Modal Content -->
+        <div class="glass-panel p-8 md:p-10 rounded-2xl relative w-full max-w-md transform scale-95 transition-transform duration-500 shadow-2xl border-primary/40 text-center" id="offer-content">
+            <button id="close-offer" class="absolute top-4 right-4 text-gray-400 hover:text-white transition focus:outline-none">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="sparkles" class="w-8 h-8 text-primaryLight"></i>
+            </div>
+            
+            <p class="text-primaryLight text-xs tracking-widest uppercase font-medium mb-2">Espera — antes de sair...</p>
+            <h3 class="text-2xl font-serif mb-4 text-white">Imagina ter um site assim <br>pro <em class="text-primaryLight">seu</em> negócio?</h3>
+            <p class="text-gray-300 font-light mb-3 text-sm leading-relaxed">
+                Esse modelo premium que você está vendo agora pode ser <strong class="text-white font-medium">100% personalizado</strong> para a sua marca — com suas cores, fotos, textos e link do seu WhatsApp.
+            </p>
+            <p class="text-gray-300 font-light mb-6 text-sm leading-relaxed">
+                Sites assim costumam custar <span class="line-through text-red-500 font-medium">R$ 800+</span> no mercado. Aqui, você leva o seu por apenas:
+            </p>
+            <div class="mb-6">
+                <span class="text-4xl font-serif text-green-500 font-medium drop-shadow-[0_0_10px_rgba(34,197,94,0.3)]">R$ 149<span class="text-2xl">,90</span></span>
+                <span class="block text-sm text-green-400 font-medium mt-1">(ou 12x de R$15,25)</span>
+                <p class="text-xs text-gray-400 mt-2">Pagamento único · Sem mensalidade · Entrega em até 48h</p>
+            </div>
+            
+            <a href="https://wa.me/5532999986684?text=Ol%C3%A1!%20Vi%20o%20modelo%20de%20site%20premium%20e%20quero%20um%20personalizado%20para%20o%20meu%20neg%C3%B3cio.%20Podem%20me%20passar%20mais%20detalhes%3F" target="_blank" class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-full font-medium transition duration-300 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(157,78,221,0.4)]">
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                Quero o meu — falar no WhatsApp
+            </a>
+            
+            <p class="text-xs text-gray-500 mt-4">🔥 Apenas <strong class="text-gray-400">3 vagas restantes</strong> nesta semana</p>
+        </div>
+    </div>
+
+    <script>
+        // Inicializa ícones do Lucide
+        lucide.createIcons();
+
+        // Animação de entrada do hero
+        setTimeout(() => {
+            const content = document.getElementById('hero-content');
+            content.style.opacity = '1';
+        }, 100);
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMenu = document.getElementById('icon-menu');
+        const iconClose = document.getElementById('icon-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                iconMenu.style.opacity = '0';
+                iconClose.style.opacity = '1';
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                iconMenu.style.opacity = '1';
+                iconClose.style.opacity = '0';
+                document.body.style.overflow = '';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) toggleMenu();
+            });
+        });
+
+        // Sticky Navbar com fundo dinâmico no scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-darker/95', 'shadow-lg');
+                nav.classList.remove('bg-darker/80');
+            } else {
+                nav.classList.add('bg-darker/80');
+                nav.classList.remove('bg-darker/95', 'shadow-lg');
+            }
+        });
+
+        /* ==========================================================
+         *  LÓGICA DO VÍDEO (Lazy Loading & Opacidade)
+         * ==========================================================
+         */
+        window.onload = function() {
+            const videoElement = document.createElement('video');
+            videoElement.autoplay = true;
+            videoElement.muted = true;
+            videoElement.loop = true;
+            videoElement.playsInline = true;
+            videoElement.setAttribute('playsinline', '');
+            videoElement.setAttribute('webkit-playsinline', '');
+            videoElement.src = '0710.mp4';
+            
+            videoElement.addEventListener('canplaythrough', function() {
+                videoElement.play().catch(e => {
+                    console.log("Auto-play foi bloqueado pelo navegador", e);
+                });
+                videoElement.style.opacity = '1';
+            });
+
+            const mediaBackground = document.querySelector('.media-background');
+            if (mediaBackground) {
+                mediaBackground.appendChild(videoElement);
+            }
+        };
+
+        /* ==========================================================
+         *  POP-UP DE OFERTA (INTENÇÃO DE SAÍDA / BACK REDIRECT)
+         * ==========================================================
+         */
+        const offerPopup = document.getElementById('offer-popup');
+        const offerContent = document.getElementById('offer-content');
+        const closeOfferBtn = document.getElementById('close-offer');
+        const offerBackdrop = document.getElementById('offer-backdrop');
+        let popupShown = false;
+
+        function showPopup() {
+            if (popupShown) return;
+            popupShown = true;
+            
+            offerPopup.classList.remove('opacity-0', 'pointer-events-none');
+            offerPopup.classList.add('opacity-100', 'pointer-events-auto');
+            
+            setTimeout(() => {
+                offerContent.classList.remove('scale-95');
+                offerContent.classList.add('scale-100');
+            }, 50);
+            
+            lucide.createIcons();
+        }
+
+        function closePopup() {
+            offerContent.classList.remove('scale-100');
+            offerContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                offerPopup.classList.remove('opacity-100', 'pointer-events-auto');
+                offerPopup.classList.add('opacity-0', 'pointer-events-none');
+            }, 300);
+        }
+
+        closeOfferBtn.addEventListener('click', closePopup);
+        offerBackdrop.addEventListener('click', closePopup);
+
+        // 1. Exit Intent (Desktop): Detecta mouse saindo pela parte superior
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0) {
+                showPopup();
+            }
+        });
+
+        // 2. Back Button Intercept (Mobile): Cria um histórico artificial
+        // Empurra o estado atual para o histórico assim que a página carrega
+        window.history.pushState({ page: 1 }, '', '');
+
+        window.addEventListener('popstate', (e) => {
+            // Quando a pessoa tenta voltar, interceptamos
+            if (!popupShown) {
+                showPopup();
+                // Opcional: devolve o estado para mantê-la na página
+                window.history.pushState({ page: 2 }, '', '');
+            }
+        });
+    </script>
+</body>
+</html>
