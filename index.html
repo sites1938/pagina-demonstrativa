@@ -106,6 +106,15 @@
         .whatsapp-float {
             animation: pulse-soft 2s infinite;
         }
+
+        /* Float Offer Animation */
+        @keyframes pulse-offer {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.7); }
+            50% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(157, 78, 221, 0); }
+        }
+        .offer-float {
+            animation: pulse-offer 1.5s infinite;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-primary selection:text-white relative">
@@ -535,6 +544,11 @@
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
+    <!-- Botão Flutuante de Oferta (Piscante) -->
+    <button id="floating-offer-btn" onclick="showPopup(true)" class="fixed bottom-24 right-6 md:bottom-6 md:left-6 bg-primary text-white p-4 rounded-full shadow-2xl z-50 offer-float hover:bg-primaryHover transition-all duration-500 opacity-0 pointer-events-none translate-y-10 flex items-center justify-center">
+        <i data-lucide="gift" class="w-8 h-8"></i>
+    </button>
+
     <!-- Offer Pop-up -->
     <div id="offer-popup" class="fixed inset-0 z-[60] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
         <!-- Backdrop -->
@@ -665,8 +679,8 @@
         const offerBackdrop = document.getElementById('offer-backdrop');
         let popupShown = false;
 
-        function showPopup() {
-            if (popupShown) return;
+        function showPopup(force = false) {
+            if (popupShown && !force) return;
             popupShown = true;
             
             offerPopup.classList.remove('opacity-0', 'pointer-events-none');
@@ -712,6 +726,15 @@
                 window.history.pushState({ page: 2 }, '', '');
             }
         });
+
+        // 3. Exibir o botão flutuante após um tempo (ex: 5 segundos)
+        setTimeout(() => {
+            const offerBtn = document.getElementById('floating-offer-btn');
+            if (offerBtn && !popupShown) {
+                offerBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+                offerBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            }
+        }, 5000);
     </script>
 </body>
 </html>
