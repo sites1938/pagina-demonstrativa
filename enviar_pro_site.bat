@@ -1,27 +1,25 @@
 @echo off
 echo ==================================================
-echo 1) Copiando imagens geradas pela IA para a pasta...
+echo 1) Limpando executaveis antigos...
 echo ==================================================
-copy /Y "C:\Users\Pichau\.gemini\antigravity-ide\brain\926ddeb5-80b8-46f8-a5ea-59e1dcc3a6d1\cilios_fio_a_fio_1784049421052.png" "d:\Trabalhos\Paginas\cilios_fio_a_fio.png"
-copy /Y "C:\Users\Pichau\.gemini\antigravity-ide\brain\926ddeb5-80b8-46f8-a5ea-59e1dcc3a6d1\cilios_brasileiro_1784049429606.png" "d:\Trabalhos\Paginas\cilios_brasileiro.png"
-copy /Y "C:\Users\Pichau\.gemini\antigravity-ide\brain\926ddeb5-80b8-46f8-a5ea-59e1dcc3a6d1\cilios_russo_1784049439630.png" "d:\Trabalhos\Paginas\cilios_russo.png"
+del /f /q "d:\Trabalhos\Paginas\baixar_imagens_ia.bat" 2>nul
+echo Executaveis antigos apagados.
 
 echo.
 echo ==================================================
-echo 2) Salvando as alteracoes no Git (Commit)...
+echo 2) Salvando novas alteracoes (Fundo animado e etc)...
 echo ==================================================
 git add .
-git commit -m "Atualiza design do popup, imagens e textos de persuasao"
+git commit -m "Remove video de fundo, aplica Ken Burns effect e atualiza imagens"
 
 echo.
 echo ==================================================
-echo 3) Enviando para o Cloudflare (Push)...
+echo 3) Enviando para o Cloudflare...
 echo ==================================================
-git push -u origin main -f
+git push origin main -f
 
 echo.
 echo ==================================================
-echo SUCESSO! As alteracoes devem aparecer no seu dominio
-echo dentro de 1 a 2 minutos.
+echo TUDO PRONTO! Alteracoes enviadas com sucesso.
 echo ==================================================
 pause
